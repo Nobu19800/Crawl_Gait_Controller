@@ -179,6 +179,7 @@ RTC::ReturnCode_t Crawl_Gait_Controller::onActivated(RTC::UniqueId ec_id)
 	robot.setCenterPosition(m_center_pos_x, m_center_pos_y, m_center_pos_z);
 	robot.setLiftHeight(m_lift_height);
 
+	m_Trajectory.leg_data.length(4);
   return RTC::RTC_OK;
 }
 
@@ -225,7 +226,7 @@ RTC::ReturnCode_t Crawl_Gait_Controller::onExecute(RTC::UniqueId ec_id)
 			m_Trajectory.leg_data[i].pose.position.y = robot.legs[i].current_pos(1);
 			m_Trajectory.leg_data[i].pose.position.z = robot.legs[i].current_pos(2);
 		}
-
+		
 		m_Trajectory.body_pose.position.x = robot.body.current_pos(0);
 		m_Trajectory.body_pose.position.y = robot.body.current_pos(1);
 		m_Trajectory.body_pose.position.z = robot.body.current_pos(2);
