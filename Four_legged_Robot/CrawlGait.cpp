@@ -92,25 +92,28 @@ void CrawlGait::walk(double vx, double vy, double dthe, double sd)
 
 
 
-
-
+	//std::cout << mc << "\t" << dthe << std::endl;
+	//std::cout << dir << "\t" << d.dir << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		legs[i].update_status(dthe, mc);
 		if (dir == d.dir)
 		{
-
+			
 			legs[i].setRotateStatus(d.pos, dthe, mc, sampling_time, false);
 
 		}
 
 	}
+	//std::cout << dir << "\t" << d.dir << std::endl;
 	
 	body->update_status(dthe, mc);
-	
+	//std::cout << dir << "\t" << d.dir << "\t" << dthe << "\t" << L_max << std::endl;
 	if (dir == d.dir)
+	{
+		//std::cout << "update" << std::endl;
 		body->setRotateStatus(d.pos, dthe, mc, sampling_time, false);
-	
+	}
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -137,20 +140,22 @@ void CrawlGait::walk(double vx, double vy, double dthe, double sd)
 
 	//std::cout << dir << std::endl;
 
-
+	
 	if (dir != d.dir)
 	{
 		for (int i = 0; i < 4; i++)
 		{
 			legs[i].set_state(MOVE_STOP);
 			legs[i].count = 0;
+			
 		}
 		body->set_state(MOVE_STOP);
 		body->count = 0;
+		
 	}
 	dir = d.dir;
 
-
+	
 
 	if (dir == WALK_FORWORD)
 	{
